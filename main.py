@@ -41,8 +41,8 @@ if __name__ == '__main__':
     pygame.image.load(PIPE).convert_alpha()
     )
 
-    GAME_SPRITES['background'] = (sound)
-
+    GAME_SPRITES['background'] = pygame.image.load(BACKGROUND)
+    
     GAME_SOUNDS['die'] = pygame.mixer.sound('audio/die.wav')
     GAME_SOUNDS['hit'] = pygame.mixer.sound('audio/hit.wav')
     GAME_SOUNDS['point'] = pygame.mixer.sound('audio/point.wav')
