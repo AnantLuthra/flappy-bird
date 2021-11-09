@@ -12,8 +12,38 @@ GROUNDY = SCREENHEIGHT * 0.8
 GAME_SPRITES = {}
 GAME_SOUNDS = {}
 PLAYER = 'sprites/bird.png'
-BACKGROUND = 'sprites/backgound.png'
+BACKGROUND = 'sprites/background.png'
 PIPE = 'sprites/pipe.png'
+
+def welcomeScreen():
+    playerx = int(SCREENWIDTH/5)
+    playery = int((SCREENHEIGHT - GAME_SPRITES['player'].get_height())/2)
+    messagex = int((SCREENWIDTH - GAME_SPRITES['message'].get_width())/2)
+    messagey = int(SCREENHEIGHT*0.13)
+    basex = 0
+    while True:
+        for event in pygame.event.get():
+            # if user ne cross daba diya to close ho jayega..
+            if event.type == QUIT or (event.type==KEYDOWN and event.type == K_ESCAPE):
+                pygame.quit()
+                sys.exit()
+
+            # Agar user space or up key dabata hai to game start ho jayega..
+            elif event.type == KEYDOWN and (event.key==K_SPACE or event.key == K_UP):
+                return
+            
+            else:
+
+                SCREEN.blit(GAME_SPRITES['background'], (0, 0))
+                SCREEN.blit(GAME_SPRITES['player'], (playerx, playery))
+                SCREEN.blit(GAME_SPRITES['message'], (messagex, messagey))
+                SCREEN.blit(GAME_SPRITES['base'], (basex, GROUNDY))
+                pygame.display.update()
+                FPSCLOCK.tick(FPS)
+                 
+
+def mainGame():
+    pass
 
 
 if __name__ == '__main__':
@@ -41,8 +71,13 @@ if __name__ == '__main__':
     pygame.image.load(PIPE).convert_alpha()
     )
 
-    GAME_SPRITES['background'] = pygame.image.load(BACKGROUND)
+    GAME_SPRITES['background'] = pygame.image.load(BACKGROUND).convert_alpha()
+    GAME_SPRITES['player'] = pygame.image.load(PLAYER).convert_alpha()
 
-    GAME_SOUNDS['die'] = pygame.mixer.sound('audio/die.wav')
-    GAME_SOUNDS['hit'] = pygame.mixer.sound('audio/hit.wav')
-    GAME_SOUNDS['point'] = pygame.mixer.sound('audio/point.wav')
+    GAME_SOUNDS['die'] = pygame.mixer.Sound('audio/die.wav')
+    GAME_SOUNDS['hit'] = pygame.mixer.Sound('audio/hit.wav')
+    GAME_SOUNDS['point'] = pygame.mixer.Sound('audio/point.wav')
+
+    while True:
+        welcomeScreen() #Welcome screen dikhayega.. Till user doesn't click anywhere.
+        mainGame()
