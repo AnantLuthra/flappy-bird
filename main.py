@@ -5,8 +5,8 @@ from pygame.version import *
 
 # making global variables for the games..
 FPS = 32
-SCREENWIDTH = 289
-SCREENHEIGHT = 511
+SCREENWIDTH = 800
+SCREENHEIGHT = 500
 SCREEN = pygame.display.set_mode((SCREENWIDTH, SCREENHEIGHT))
 GROUNDY = SCREENHEIGHT * 0.8
 GAME_SPRITES = {}
@@ -17,9 +17,9 @@ PIPE = 'sprites/pipe.png'
 
 def welcomeScreen():
     playerx = int(SCREENWIDTH/5)
-    playery = int((SCREENHEIGHT - GAME_SPRITES['player'].get_height())/2)
-    messagex = int((SCREENWIDTH - GAME_SPRITES['message'].get_width())/2)
-    messagey = int(SCREENHEIGHT*0.13)
+    playery = int((SCREENHEIGHT - GAME_SPRITES['player'].get_height())/2.7)
+    messagex = int((SCREENWIDTH - GAME_SPRITES['message'].get_width())/2.01)
+    messagey = int(SCREENHEIGHT*0.01)
     basex = 0
     while True:
         for event in pygame.event.get():
@@ -40,7 +40,7 @@ def welcomeScreen():
                 SCREEN.blit(GAME_SPRITES['base'], (basex, GROUNDY))
                 pygame.display.update()
                 FPSCLOCK.tick(FPS)
-                 
+                
 
 def mainGame():
     pass
